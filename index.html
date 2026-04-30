@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axiom Digitals | High-Performance Web Design & Conversion Optimization</title>
+    <meta name="description" content="Axiom Digitals engineers digital experiences that convert. Premium web design, CRO, and performance optimization for ambitious brands.">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+            --font-heading: "Outfit", sans-serif;
+            --color-primary: #0A66FF;
+            --color-primary-dark: #0052D1;
+            --color-surface: #050505;
+            --color-surface-lighter: #0A0A0A;
+        }
+
+        @layer base {
+            html { scroll-behavior: smooth; }
+            body { @apply bg-surface text-white font-sans antialiased selection:bg-primary selection:text-white; }
+            h1, h2, h3, h4 { @apply font-heading; }
+        }
+
+        .gradient-text { @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-primary/80; }
+        .premium-card { @apply bg-surface-lighter border border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(10,102,255,0.05)]; }
+        .btn-primary { @apply bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-semibold transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(10,102,255,0.2)]; }
+        .btn-secondary { @apply bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-2xl font-semibold transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <svg viewBox="0 0 100 100" class="w-10 h-10 drop-shadow-[0_0_8px_rgba(10,102,255,0.8)]">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#0A66FF" />
+                            <stop offset="100%" stopColor="#003785" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M50 15L85 85H70L50 40L30 85H15L50 15Z" fill="url(#logoGrad)"></path>
+                </svg>
+                <span class="font-bold text-xl tracking-tight">AXIOM <span class="text-primary">DIGITALS</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
+                <a href="#services" class="text-sm font-medium text-white/70 hover:text-white transition-colors">Services</a>
+                <a href="#portfolio" class="text-sm font-medium text-white/70 hover:text-white transition-colors">Portfolio</a>
+                <a href="#contact" class="btn-primary py-2.5 text-sm">Get Started</a>
+            </div>
+            <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+                    <span>⚡ Engineering Digital Experiences</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    We Build Websites That <span class="gradient-text">Don't Just Look Good</span> — They Convert.
+                </h1>
+                <p class="text-xl text-white/60 mb-10 max-w-lg leading-relaxed">
+                    Helping brands scale with high-performance design, strategy, and optimization.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary">Get Started <i data-lucide="arrow-right"></i></a>
+                    <a href="#portfolio" class="btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            <div class="relative hidden lg:block">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Hero" class="rounded-3xl border border-white/10 shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 bg-surface-lighter">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Core Expertise</h2>
+                <p class="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed">Premium solutions designed to scale your business.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="premium-card">
+                    <i data-lucide="monitor" class="w-8 h-8 text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Website Design</h3>
+                    <p class="text-white/50 text-sm">Modern, responsive, and engaging websites tailored to your brand.</p>
+                </div>
+                <div class="premium-card">
+                    <i data-lucide="zap" class="w-8 h-8 text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">CRO Optimization</h3>
+                    <p class="text-white/50 text-sm">Turning visitors into customers through data-driven improvements.</p>
+                </div>
+                <div class="premium-card">
+                    <i data-lucide="search" class="w-8 h-8 text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">SEO & Speed</h3>
+                    <p class="text-white/50 text-sm">Improving visibility and performance for better search rankings.</p>
+                </div>
+                <div class="premium-card">
+                    <i data-lucide="layers" class="w-8 h-8 text-primary mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4">Brand Identity</h3>
+                    <p class="text-white/50 text-sm">Creating cohesive and memorable brand visuals that stand out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-5xl font-bold mb-8">Ready to <span class="gradient-text">Scale?</span></h2>
+                    <p class="text-white/60 text-lg mb-12">Let's build something results-driven. Reach out today.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="mail" class="text-primary"></i>
+                            <span>hello.axiomdigital@gmail.com</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <i data-lucide="mail" class="text-primary"></i>
+                            <span>axiom.techwebexpert@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="bg-surface-lighter p-8 rounded-3xl border border-white/5 space-y-6">
+                    <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary">
+                    <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary">
+                    <textarea rows="4" placeholder="Your Message" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary resize-none"></textarea>
+                    <button type="submit" class="btn-primary w-full py-4">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-surface-lighter">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <span class="font-bold text-xl">AXIOM <span class="text-primary">DIGITALS</span></span>
+            <div class="flex gap-6">
+                <a href="#"><i data-lucide="facebook"></i></a>
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+                <a href="#"><i data-lucide="youtube"></i></a>
+            </div>
+            <p class="text-white/30 text-sm">© 2026 Axiom Digitals. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-surface/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.remove('bg-transparent', 'py-6');
+            } else {
+                nav.classList.remove('bg-surface/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/5');
+                nav.classList.add('bg-transparent', 'py-6');
+            }
+        });
+    </script>
+</body>
+</html>
+
