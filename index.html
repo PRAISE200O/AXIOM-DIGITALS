@@ -166,7 +166,7 @@
           <a href="#about" class="text-sm font-medium text-white/70 hover:text-primary transition-all">About</a>
           <a href="#portfolio" class="text-sm font-medium text-white/70 hover:text-primary transition-all">Portfolio</a>
           <a href="#testimonials" class="text-sm font-medium text-white/70 hover:text-primary transition-all">Testimonials</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary py-2.5 px-6 text-sm">Start Project</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com,axiom.techwebexpert@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary py-2.5 px-6 text-sm">Start Project</a>
         </nav>
 
         <!-- Mobile Toggle -->
@@ -182,7 +182,7 @@
           <a href="#about" class="mobile-link text-lg font-medium py-2 border-b border-white/5">About</a>
           <a href="#portfolio" class="mobile-link text-lg font-medium py-2 border-b border-white/5">Portfolio</a>
           <a href="#testimonials" class="mobile-link text-lg font-medium py-2 border-b border-white/5">Testimonials</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="mobile-link btn-primary w-full text-center mt-4">Start Project</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com,axiom.techwebexpert@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="mobile-link btn-primary w-full text-center mt-4">Start Project</a>
         </div>
       </div>
     </header>
@@ -325,25 +325,32 @@
       <!-- PORTFOLIO -->
       <section id="portfolio" class="py-24 bg-gradient-tech overflow-hidden">
         <div class="container-custom">
-          <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal">
             <div class="max-w-2xl">
               <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Portfolio</h2>
               <h3 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 italic leading-tight">Featured <span class="text-primary not-italic">Case Studies.</span></h3>
               <p class="text-white/50 text-xl leading-relaxed">Explore our latest projects where engineering meets creativity to deliver exceptional ROI.</p>
             </div>
-            <a href="#" class="btn-secondary mt-8 md:mt-0 inline-block">All Work</a>
+            <div class="mt-8 md:mt-0 flex flex-wrap gap-3" id="portfolio-filters">
+              <button data-filter="all" class="filter-btn active px-6 py-2 rounded-full border border-white/10 text-sm font-medium hover:border-primary/50 transition-all cursor-pointer">All Work</button>
+              <button data-filter="ecommerce" class="filter-btn px-6 py-2 rounded-full border border-white/10 text-sm font-medium hover:border-primary/50 transition-all cursor-pointer">E-Commerce</button>
+              <button data-filter="saas" class="filter-btn px-6 py-2 rounded-full border border-white/10 text-sm font-medium hover:border-primary/50 transition-all cursor-pointer">SaaS & Tech</button>
+            </div>
           </div>
 
-          <div class="grid gap-24">
+          <div class="grid gap-24" id="portfolio-grid">
             <!-- Project 1 -->
-            <div class="reveal group grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal portfolio-item group grid lg:grid-cols-2 gap-12 items-center" data-category="ecommerce">
               <div class="relative overflow-hidden rounded-2xl aspect-video">
                 <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200" alt="EcomX" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerpolicy="no-referrer">
                 <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-transparent to-transparent z-20 opacity-60"></div>
               </div>
               <div class="space-y-6 lg:px-12">
-                <p class="text-primary font-bold text-sm uppercase tracking-widest">Shopify / E-Commerce</p>
+                <div class="flex items-center gap-3">
+                  <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">E-Commerce</span>
+                  <p class="text-white/40 font-bold text-[10px] uppercase tracking-widest">Shopify Plus</p>
+                </div>
                 <h4 class="text-3xl md:text-4xl font-bold">EcomX Store Redesign</h4>
                 <p class="text-white/60 text-lg leading-relaxed">A high-performance Shopify Plus storefront overhaul for a luxury electronics brand, focused on bespoke UX and mobile conversion.</p>
                 <div class="flex gap-10">
@@ -354,14 +361,17 @@
               </div>
             </div>
             <!-- Project 2 -->
-            <div class="reveal group grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal portfolio-item group grid lg:grid-cols-2 gap-12 items-center" data-category="saas">
               <div class="lg:order-2 relative overflow-hidden rounded-2xl aspect-video">
                 <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                 <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="AssetFlow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerpolicy="no-referrer">
                 <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-transparent to-transparent z-20 opacity-60"></div>
               </div>
               <div class="lg:order-1 space-y-6 lg:px-12 lg:text-right">
-                <p class="text-primary font-bold text-sm uppercase tracking-widest">Wix Studio / SaaS</p>
+                <div class="flex items-center gap-3 lg:justify-end">
+                  <p class="text-white/40 font-bold text-[10px] uppercase tracking-widest">Wix Studio</p>
+                  <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">SaaS & Tools</span>
+                </div>
                 <h4 class="text-3xl md:text-4xl font-bold">AssetFlow Dashboard</h4>
                 <p class="text-white/60 text-lg leading-relaxed">Advanced asset tracking platform built on Wix Studio, featuring complex custom CMS integrations and automated workflows.</p>
                 <div class="flex gap-10 lg:justify-end">
@@ -434,7 +444,7 @@
               <h2 class="text-4xl md:text-6xl font-bold leading-tight">Ready to Scale Your <span class="text-primary italic underline decoration-white/10 underline-offset-[12px]">Digital Presence?</span></h2>
               <p class="text-xl text-white/60 leading-relaxed max-w-2xl mx-auto">Let’s build something that drives real results. Our strategy-first approach ensures every dollar you spend is an investment in growth.</p>
               <div class="pt-6 flex justify-center">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary group flex items-center gap-4 text-xl px-12 py-5 shadow-[0_0_40px_rgba(10,102,255,0.3)] hover:shadow-[0_0_60px_rgba(10,102,255,0.5)]">Start Your Project<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-2 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com,axiom.techwebexpert@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary group flex items-center gap-4 text-xl px-12 py-5 shadow-[0_0_40px_rgba(10,102,255,0.3)] hover:shadow-[0_0_60px_rgba(10,102,255,0.5)]">Start Your Project<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-2 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
               </div>
               <p class="text-sm text-white/30 uppercase tracking-[0.4em] pt-8">Limited availability for Q3 project launches</p>
             </div>
@@ -453,9 +463,22 @@
                 <p class="text-white/60 text-lg leading-relaxed">Have a project in mind? We'd love to hear from you. Our experts are ready to audit your current presence and suggest immediate growth opportunities.</p>
               </div>
               <div class="space-y-6">
+                <!-- PRIMARY INQUIRIES -->
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="flex items-center gap-6 group">
                   <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
-                  <div><p class="text-xs text-white/40 uppercase tracking-widest font-bold">Inquiries & Support</p><p class="text-lg font-medium">hello.axiomdigital@gmail.com</p></div>
+                  <div>
+                    <p class="text-xs text-white/40 uppercase tracking-widest font-bold">General Inquiries</p>
+                    <p class="text-lg font-medium">hello.axiomdigital@gmail.com</p>
+                  </div>
+                </a>
+                
+                <!-- TECH & WEB EXPERT -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=axiom.techwebexpert@gmail.com&su=Tech%20Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="flex items-center gap-6 group">
+                  <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                  <div>
+                    <p class="text-xs text-white/40 uppercase tracking-widest font-bold">Technical Support</p>
+                    <p class="text-lg font-medium">axiom.techwebexpert@gmail.com</p>
+                  </div>
                 </a>
               </div>
               <div class="pt-8 flex items-center gap-6">
@@ -469,7 +492,7 @@
                 <a href="https://www.youtube.com/@AxiomDigital-y4n" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
               </div>
             </div>
-
+            
             <div class="reveal glass-card !p-10 relative overflow-hidden border-white/5" style="transition-delay: 200ms;">
                <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
                 <form id="contact-form" class="space-y-6 relative z-10">
@@ -571,6 +594,50 @@
         });
       });
 
+      // Portfolio Filtering
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+      // Initialize Active State
+      const allFilter = document.querySelector('[data-filter="all"]');
+      if (allFilter) {
+        allFilter.classList.add('bg-primary', 'text-white', 'border-primary');
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterBtns.forEach(b => {
+             b.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
+          });
+          
+          // Add active styles to clicked button
+          btn.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
+
+          const filter = btn.getAttribute('data-filter');
+
+          portfolioItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            
+            if (filter === 'all' || category === filter) {
+              item.style.display = 'grid';
+              // Re-trigger reveal for filtered items or keep visible
+              item.classList.add('active');
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                if (btn.classList.contains('active') && btn.getAttribute('data-filter') === filter) {
+                   item.style.display = 'none';
+                }
+              }, 300);
+            }
+          });
+        });
+      });
+
       // Mobile Menu Toggle
       const mobileToggle = document.getElementById('mobile-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -599,8 +666,8 @@
         const subject = encodeURIComponent(`Project Inquiry from ${name}`);
         const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
         
-        // Direct Gmail Compose URL
-        sendMessageLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=${subject}&body=${body}`;
+        // Direct Gmail Compose URL (to both addresses)
+        sendMessageLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com,axiom.techwebexpert@gmail.com&su=${subject}&body=${body}`;
         sendMessageLink.target = "_blank";
       }
 
