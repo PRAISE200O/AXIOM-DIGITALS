@@ -1,176 +1,639 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axiom Digitals | High-Performance Web Design & Conversion Optimization</title>
-    <meta name="description" content="Axiom Digitals engineers digital experiences that convert. Premium web design, CRO, and performance optimization for ambitious brands.">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-    <style type="text/tailwindcss">
-        @theme {
-            --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-            --font-heading: "Outfit", sans-serif;
-            --color-primary: #0A66FF;
-            --color-primary-dark: #0052D1;
-            --color-surface: #050505;
-            --color-surface-lighter: #0A0A0A;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Axiom Digitals | Engineering Digital Experiences That Convert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            colors: {
+              primary: '#0A66FF',
+              'bg-dark': '#050505',
+              'accent-blue': '#3B82F6',
+            }
+          }
         }
-
-        @layer base {
-            html { scroll-behavior: smooth; }
-            body { @apply bg-surface text-white font-sans antialiased selection:bg-primary selection:text-white; }
-            h1, h2, h3, h4 { @apply font-heading; }
+      }
+    </script>
+    <style type="text/css">
+      /* Fallback/Immediate styles for smooth loading */
+      body { background-color: #050505; color: white; scroll-behavior: smooth; }
+      
+      .container-custom {
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      @media (min-width: 1024px) {
+        .container-custom {
+          padding-left: 3rem;
+          padding-right: 3rem;
         }
+      }
 
-        .gradient-text { @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-primary/80; }
-        .premium-card { @apply bg-surface-lighter border border-white/5 rounded-3xl p-8 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(10,102,255,0.05)]; }
-        .btn-primary { @apply bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-semibold transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-[0_10px_30px_rgba(10,102,255,0.2)]; }
-        .btn-secondary { @apply bg-white/5 border border-white/10 hover:border-white/30 text-white px-8 py-4 rounded-2xl font-semibold transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2; }
+      .glass-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+      }
+
+      .btn-primary {
+        background-color: #0A66FF;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background-color: rgba(10, 102, 255, 0.9);
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(10, 102, 255, 0.4);
+      }
+      .btn-primary:active {
+        transform: scale(0.95);
+      }
+
+      .btn-success {
+        background-color: #16a34a;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+      .btn-secondary:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .text-gradient {
+        background: linear-gradient(to right, white, white, #0A66FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .bg-gradient-tech {
+        background: radial-gradient(circle at 0% 0%, rgba(10, 102, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 100% 100%, rgba(10, 102, 255, 0.1) 0%, transparent 50%);
+      }
+
+      .reveal { 
+        opacity: 0; 
+        transform: translateY(40px); 
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); 
+      }
+      .reveal.active { opacity: 1; transform: translateY(0); }
+      .reveal.active-scale { transform: scale(1); opacity: 1; }
+      
+      .stagger-1 { transition-delay: 100ms; }
+      .stagger-2 { transition-delay: 200ms; }
+      .stagger-3 { transition-delay: 300ms; }
     </style>
-</head>
-<body>
+  </head>
+  <body class="bg-bg-dark text-white font-sans antialiased selection:bg-primary/30 scroll-smooth">
+    
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
+      <div class="container-custom flex items-center justify-between">
+        <!-- LOGO -->
+        <a href="/" class="flex items-center gap-4 h-12">
+          <div class="relative w-14 h-14 flex items-center justify-center group">
+            <div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <svg viewBox="0 0 100 100" class="w-full h-full relative z-10 filter drop-shadow-[0_0_15px_rgba(10,102,255,0.6)]">
+              <defs>
+                <linearGradient id="axiom-primary-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7DD3FC" />
+                  <stop offset="50%" stop-color="#0A66FF" />
+                  <stop offset="100%" stop-color="#0346B3" />
+                </linearGradient>
+                <filter id="glow">
+                   <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                   <feMerge>
+                       <feMergeNode in="coloredBlur"/>
+                       <feMergeNode in="SourceGraphic"/>
+                   </feMerge>
+                </filter>
+              </defs>
+              <ellipse cx="50" cy="85" rx="40" ry="2" fill="url(#axiom-primary-grad)" class="opacity-40" />
+              <path d="M50 15 L85 85 L65 85 L50 45 L35 85 L15 85 Z" fill="white" fill-opacity="0.1" />
+              <path d="M30 65 Q 50 20 85 45" fill="none" stroke="url(#axiom-primary-grad)" stroke-width="6" stroke-linecap="round" class="opacity-60" />
+              <path d="M50 15 L85 85 L72 85 L50 40 L28 85 L15 85 Z" fill="white" />
+              <path d="M20 55 Q 50 90 95 35" fill="none" stroke="url(#axiom-primary-grad)" stroke-width="8" stroke-linecap="round" style="filter: url(#glow)" />
+              <path d="M50 35 L62 70 L38 70 Z" fill="#050505" />
+            </svg>
+          </div>
+          <div class="flex flex-col items-start">
+            <span class="font-display font-black text-3xl tracking-[-0.05em] uppercase text-white leading-none">Axiom</span>
+            <span class="text-[9px] tracking-[0.55em] uppercase text-primary font-bold mt-1.5 opacity-80">Digitals</span>
+          </div>
+        </a>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent py-6">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2 group">
-                <svg viewBox="0 0 100 100" class="w-10 h-10 drop-shadow-[0_0_8px_rgba(10,102,255,0.8)]">
-                    <defs>
-                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#0A66FF" />
-                            <stop offset="100%" stopColor="#003785" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M50 15L85 85H70L50 40L30 85H15L50 15Z" fill="url(#logoGrad)"></path>
-                </svg>
-                <span class="font-bold text-xl tracking-tight">AXIOM <span class="text-primary">DIGITALS</span></span>
-            </a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
-                <a href="#services" class="text-sm font-medium text-white/70 hover:text-white transition-colors">Services</a>
-                <a href="#portfolio" class="text-sm font-medium text-white/70 hover:text-white transition-colors">Portfolio</a>
-                <a href="#contact" class="btn-primary py-2.5 text-sm">Get Started</a>
-            </div>
-            <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#services" class="text-sm font-medium text-white/70 hover:text-primary transition-all">Services</a>
+          <a href="#about" class="text-sm font-medium text-white/70 hover:text-primary transition-all">About</a>
+          <a href="#portfolio" class="text-sm font-medium text-white/70 hover:text-primary transition-all">Portfolio</a>
+          <a href="#testimonials" class="text-sm font-medium text-white/70 hover:text-primary transition-all">Testimonials</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary py-2.5 px-6 text-sm">Start Project</a>
+        </nav>
+
+        <!-- Mobile Toggle -->
+        <button id="mobile-toggle" class="md:hidden text-white p-2">
+          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-bg-dark border-b border-white/10 md:hidden overflow-hidden transition-all duration-300">
+        <div class="flex flex-col p-6 gap-4">
+          <a href="#services" class="mobile-link text-lg font-medium py-2 border-b border-white/5">Services</a>
+          <a href="#about" class="mobile-link text-lg font-medium py-2 border-b border-white/5">About</a>
+          <a href="#portfolio" class="mobile-link text-lg font-medium py-2 border-b border-white/5">Portfolio</a>
+          <a href="#testimonials" class="mobile-link text-lg font-medium py-2 border-b border-white/5">Testimonials</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="mobile-link btn-primary w-full text-center mt-4">Start Project</a>
         </div>
-    </nav>
+      </div>
+    </header>
 
-    <!-- Hero -->
-    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
-        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-                    <span>⚡ Engineering Digital Experiences</span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                    We Build Websites That <span class="gradient-text">Don't Just Look Good</span> — They Convert.
-                </h1>
-                <p class="text-xl text-white/60 mb-10 max-w-lg leading-relaxed">
-                    Helping brands scale with high-performance design, strategy, and optimization.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="btn-primary">Get Started <i data-lucide="arrow-right"></i></a>
-                    <a href="#portfolio" class="btn-secondary">View Our Work</a>
-                </div>
-            </div>
-            <div class="relative hidden lg:block">
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Hero" class="rounded-3xl border border-white/10 shadow-2xl">
-            </div>
+    <main>
+      <!-- HERO -->
+      <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-tech">
+        <div class="absolute inset-0 z-0">
+          <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full"></div>
+          <div class="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-accent-blue/5 blur-[100px] rounded-full"></div>
         </div>
-    </section>
 
-    <!-- Services -->
-    <section id="services" class="py-24 bg-surface-lighter">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Core Expertise</h2>
-                <p class="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed">Premium solutions designed to scale your business.</p>
+        <div class="container-custom relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div class="reveal active">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+              <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+              Empowering Future-Forward Brands
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="premium-card">
-                    <i data-lucide="monitor" class="w-8 h-8 text-primary mb-6"></i>
-                    <h3 class="text-xl font-bold mb-4">Website Design</h3>
-                    <p class="text-white/50 text-sm">Modern, responsive, and engaging websites tailored to your brand.</p>
-                </div>
-                <div class="premium-card">
-                    <i data-lucide="zap" class="w-8 h-8 text-primary mb-6"></i>
-                    <h3 class="text-xl font-bold mb-4">CRO Optimization</h3>
-                    <p class="text-white/50 text-sm">Turning visitors into customers through data-driven improvements.</p>
-                </div>
-                <div class="premium-card">
-                    <i data-lucide="search" class="w-8 h-8 text-primary mb-6"></i>
-                    <h3 class="text-xl font-bold mb-4">SEO & Speed</h3>
-                    <p class="text-white/50 text-sm">Improving visibility and performance for better search rankings.</p>
-                </div>
-                <div class="premium-card">
-                    <i data-lucide="layers" class="w-8 h-8 text-primary mb-6"></i>
-                    <h3 class="text-xl font-bold mb-4">Brand Identity</h3>
-                    <p class="text-white/50 text-sm">Creating cohesive and memorable brand visuals that stand out.</p>
-                </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 font-display">
+              We Build Websites That <span class="text-gradient underline decoration-primary/40 underline-offset-8">Don’t Just Look Good</span> — They Convert.
+            </h1>
+            <p class="text-xl text-white/60 mb-10 max-w-xl leading-relaxed">
+              Helping brands scale with high-performance design, strategy, and optimization. We engineer digital experiences that drive measurable growth.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#contact" class="btn-primary group flex items-center justify-center gap-2 text-lg">
+                Get Started
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+              <a href="#portfolio" class="btn-secondary flex items-center justify-center text-lg">View Our Work</a>
             </div>
-        </div>
-    </section>
+            <div class="mt-16 grid grid-cols-3 gap-8 border-t border-white/5 pt-12">
+              <div><p class="text-3xl font-display font-bold text-white mb-1">50+</p><p class="text-xs text-white/40 uppercase tracking-widest">Projects Done</p></div>
+              <div><p class="text-3xl font-display font-bold text-white mb-1">3x</p><p class="text-xs text-white/40 uppercase tracking-widest">Conversion Growth</p></div>
+              <div><p class="text-3xl font-display font-bold text-white mb-1">95%</p><p class="text-xs text-white/40 uppercase tracking-widest">Client Success</p></div>
+            </div>
+          </div>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div>
-                    <h2 class="text-5xl font-bold mb-8">Ready to <span class="gradient-text">Scale?</span></h2>
-                    <p class="text-white/60 text-lg mb-12">Let's build something results-driven. Reach out today.</p>
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <i data-lucide="mail" class="text-primary"></i>
-                            <span>hello.axiomdigital@gmail.com</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <i data-lucide="mail" class="text-primary"></i>
-                            <span>axiom.techwebexpert@gmail.com</span>
-                        </div>
+          <div class="relative hidden lg:block reveal active" style="transition-delay: 200ms;">
+            <div class="relative w-full aspect-square max-w-2xl mx-auto">
+               <div class="absolute inset-0 bg-primary/10 rounded-full blur-[80px]"></div>
+               <div class="glass-card h-full w-full flex items-center justify-center overflow-hidden border-white/20">
+                  <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" alt="Tech Abstract" class="w-full h-full object-cover opacity-60 mix-blend-overlay" referrerpolicy="no-referrer">
+                  <div class="absolute inset-0 bg-gradient-to-tr from-bg-dark via-transparent to-primary/20"></div>
+                  <div class="absolute top-1/4 right-10 glass-card !p-4 border-primary/30 animate-bounce">
+                    <p class="text-primary text-2xl font-bold">+120%</p>
+                    <p class="text-[10px] uppercase text-white/40 tracking-wider">Conversion rate</p>
+                  </div>
+                  <div class="absolute bottom-1/4 left-10 glass-card !p-4 border-accent-blue/30 scale-110">
+                    <div class="flex gap-1 mb-1">
+                      <div class="w-1 h-3 bg-primary/60 rounded-full"></div><div class="w-1 h-3 bg-primary/60 rounded-full"></div><div class="w-1 h-3 bg-primary/60 rounded-full"></div>
                     </div>
+                    <p class="text-[10px] uppercase text-white/40 tracking-wider">Optimized performance</p>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="py-24 relative overflow-hidden">
+        <div class="container-custom grid lg:grid-cols-2 gap-20 items-center">
+          <div class="reveal">
+            <div class="relative group">
+              <div class="absolute -inset-4 bg-primary/10 blur-2xl rounded-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="Creative Strategy" class="relative rounded-2xl w-full object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/3]" referrerpolicy="no-referrer">
+              <div class="absolute -bottom-6 -right-6 glass-card !p-6 max-w-[200px]">
+                <p class="text-primary text-4xl font-bold mb-1">95%</p>
+                <p class="text-xs text-white/60 uppercase tracking-widest font-semibold">Client Satisfaction</p>
+              </div>
+            </div>
+          </div>
+          <div class="reveal" style="transition-delay: 200ms;">
+            <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-6">About Axiom Digitals</h2>
+            <h3 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">Engineering Excellence in <span class="text-primary">Digital Experiences.</span></h3>
+            <p class="text-xl text-white/60 mb-10 leading-relaxed">Axiom Digitals combines creativity with data-driven strategy to deliver digital solutions that drive measurable results. We don't just build websites; we build growth engines.</p>
+            <div class="grid sm:grid-cols-2 gap-6 mb-12">
+              <div class="flex items-center gap-3"><svg class="text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span class="text-white/80 font-medium">Performance-focused approach</span></div>
+              <div class="flex items-center gap-3"><svg class="text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span class="text-white/80 font-medium">Clean, scalable design systems</span></div>
+              <div class="flex items-center gap-3"><svg class="text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span class="text-white/80 font-medium">Conversion-first mindset</span></div>
+              <div class="flex items-center gap-3"><svg class="text-primary" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg><span class="text-white/80 font-medium">Tailored digital strategies</span></div>
+            </div>
+            <div class="p-8 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10 flex items-start gap-6">
+               <div class="text-primary opacity-30 mt-1"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16L9.017 16C7.91243 16 7.017 16.8954 7.017 18L7.017 21L4.017 21L4.017 11L12.017 3L20.017 11L20.017 21L14.017 21Z"></path></svg></div>
+               <div>
+                  <p class="italic text-white/70 mb-4 font-medium">"Our mission is to bridge the gap between aesthetic design and functional performance. Every pixel we place is designed to convert."</p>
+                  <p class="text-sm font-bold text-white uppercase tracking-wider">— Strategy First Approach</p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="py-24 bg-bg-dark/50">
+        <div class="container-custom">
+          <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+            <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Core Services</h2>
+            <h3 class="text-4xl md:text-5xl font-bold mb-6">Expert Solutions for <span class="text-gradient">Digital Growth.</span></h3>
+            <p class="text-white/50 text-lg">We specialize in creating performance-driven digital experiences that elevate your brand and maximize your ROI.</p>
+          </div>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Website Design -->
+            <div class="reveal group glass-card hover:bg-white/[0.08] transition-all duration-500 cursor-default flex flex-col items-center text-center py-12">
+              <div class="w-20 h-20 rounded-2xl bg-linear-to-br from-blue-600/20 to-cyan-400/20 border border-white/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Website Design</h4>
+              <p class="text-white/50 text-sm leading-relaxed px-4">Modern, responsive, and visually engaging websites tailored to your brand's unique identity.</p>
+            </div>
+            <!-- CRO -->
+            <div class="reveal stagger-1 group glass-card hover:bg-white/[0.08] transition-all duration-500 cursor-default flex flex-col items-center text-center py-12" style="transition-delay: 100ms;">
+              <div class="w-20 h-20 rounded-2xl bg-linear-to-br from-purple-600/20 to-pink-400/20 border border-white/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">CRO Optimization</h4>
+              <p class="text-white/50 text-sm leading-relaxed px-4">Turning visitors into customers through data-driven improvements and A/B testing strategy.</p>
+            </div>
+            <!-- SEO -->
+            <div class="reveal stagger-2 group glass-card hover:bg-white/[0.08] transition-all duration-500 cursor-default flex flex-col items-center text-center py-12" style="transition-delay: 200ms;">
+              <div class="w-20 h-20 rounded-2xl bg-linear-to-br from-emerald-600/20 to-teal-400/20 border border-white/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">SEO & Performance</h4>
+              <p class="text-white/50 text-sm leading-relaxed px-4">Improving visibility and performance for better rankings and seamless user experience.</p>
+            </div>
+            <!-- Branding -->
+            <div class="reveal stagger-3 group glass-card hover:bg-white/[0.08] transition-all duration-500 cursor-default flex flex-col items-center text-center py-12" style="transition-delay: 300ms;">
+              <div class="w-20 h-20 rounded-2xl bg-linear-to-br from-orange-600/20 to-yellow-400/20 border border-white/10 flex items-center justify-center text-primary mb-8 group-hover:scale-110 transition-transform duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">Brand Identity</h4>
+              <p class="text-white/50 text-sm leading-relaxed px-4">Creating cohesive and memorable brand visuals that make a lasting impression on your audience.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section id="portfolio" class="py-24 bg-gradient-tech overflow-hidden">
+        <div class="container-custom">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 reveal">
+            <div class="max-w-2xl">
+              <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Portfolio</h2>
+              <h3 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 italic leading-tight">Featured <span class="text-primary not-italic">Case Studies.</span></h3>
+              <p class="text-white/50 text-xl leading-relaxed">Explore our latest projects where engineering meets creativity to deliver exceptional ROI.</p>
+            </div>
+            <a href="#" class="btn-secondary mt-8 md:mt-0 inline-block">All Work</a>
+          </div>
+
+          <div class="grid gap-24">
+            <!-- Project 1 -->
+            <div class="reveal group grid lg:grid-cols-2 gap-12 items-center">
+              <div class="relative overflow-hidden rounded-2xl aspect-video">
+                <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1200" alt="EcomX" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-transparent to-transparent z-20 opacity-60"></div>
+              </div>
+              <div class="space-y-6 lg:px-12">
+                <p class="text-primary font-bold text-sm uppercase tracking-widest">Shopify / E-Commerce</p>
+                <h4 class="text-3xl md:text-4xl font-bold">EcomX Store Redesign</h4>
+                <p class="text-white/60 text-lg leading-relaxed">A high-performance Shopify Plus storefront overhaul for a luxury electronics brand, focused on bespoke UX and mobile conversion.</p>
+                <div class="flex gap-10">
+                  <div><p class="text-2xl font-bold text-white mb-1">+120%</p><p class="text-[10px] uppercase text-white/40 tracking-widest">Conversion Incr.</p></div>
+                  <div><p class="text-2xl font-bold text-white mb-1">-40%</p><p class="text-[10px] uppercase text-white/40 tracking-widest">Bounce Rate</p></div>
                 </div>
-                <form class="bg-surface-lighter p-8 rounded-3xl border border-white/5 space-y-6">
-                    <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary">
-                    <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary">
-                    <textarea rows="4" placeholder="Your Message" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-primary resize-none"></textarea>
-                    <button type="submit" class="btn-primary w-full py-4">Send Message</button>
+                <a href="#" class="inline-flex items-center gap-2 text-white font-bold group/btn pt-4 underline decoration-primary/50 underline-offset-4">View Case Study<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+              </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="reveal group grid lg:grid-cols-2 gap-12 items-center">
+              <div class="lg:order-2 relative overflow-hidden rounded-2xl aspect-video">
+                <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="AssetFlow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-t from-bg-dark via-transparent to-transparent z-20 opacity-60"></div>
+              </div>
+              <div class="lg:order-1 space-y-6 lg:px-12 lg:text-right">
+                <p class="text-primary font-bold text-sm uppercase tracking-widest">Wix Studio / SaaS</p>
+                <h4 class="text-3xl md:text-4xl font-bold">AssetFlow Dashboard</h4>
+                <p class="text-white/60 text-lg leading-relaxed">Advanced asset tracking platform built on Wix Studio, featuring complex custom CMS integrations and automated workflows.</p>
+                <div class="flex gap-10 lg:justify-end">
+                  <div><p class="text-2xl font-bold text-white mb-1">3x Faster</p><p class="text-[10px] uppercase text-white/40 tracking-widest">Load Speed</p></div>
+                  <div><p class="text-2xl font-bold text-white mb-1">+85%</p><p class="text-[10px] uppercase text-white/40 tracking-widest">User Active</p></div>
+                </div>
+                <div class="flex lg:justify-end">
+                  <a href="#" class="inline-flex items-center gap-2 text-white font-bold group/btn pt-4 underline decoration-primary/50 underline-offset-4">View Case Study<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-primary group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section id="testimonials" class="py-24 relative overflow-hidden bg-bg-dark/80">
+        <div class="container-custom relative z-10">
+          <div class="text-center mb-20 reveal">
+            <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Proof of Excellence</h2>
+            <h3 class="text-4xl md:text-5xl font-bold">Trusted by <span class="text-gradient underline decoration-primary/30 underline-offset-8 italic">Visionary Leaders.</span></h3>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="reveal glass-card flex flex-col justify-between">
+              <div>
+                <div class="flex gap-1 mb-6 text-primary"><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg></div>
+                <p class="text-lg text-white/80 italic leading-relaxed mb-8">"Axiom Digitals completely transformed our online presence. Our conversions doubled within weeks of the new launch."</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <img src="https://i.pravatar.cc/150?u=alex" alt="Alex" class="w-12 h-12 rounded-full ring-2 ring-primary/20" referrerpolicy="no-referrer">
+                <div><p class="font-bold text-white">Alexander Sterling</p><p class="text-xs text-white/40 uppercase tracking-widest">CEO, Nexa Brands</p></div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="reveal glass-card flex flex-col justify-between" style="transition-delay: 100ms;">
+              <div>
+                <div class="flex gap-1 mb-6 text-primary"><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg></div>
+                <p class="text-lg text-white/80 italic leading-relaxed mb-8">"The attention to detail and performance optimization is unmatched. Best investment for our digital growth this year."</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <img src="https://i.pravatar.cc/150?u=sarah" alt="Sarah" class="w-12 h-12 rounded-full ring-2 ring-primary/20" referrerpolicy="no-referrer">
+                <div><p class="font-bold text-white">Sarah Jenkins</p><p class="text-xs text-white/40 uppercase tracking-widest">Marketing Director, EcomX</p></div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="reveal glass-card flex flex-col justify-between" style="transition-delay: 200ms;">
+              <div>
+                <div class="flex gap-1 mb-6 text-primary"><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><svg fill="currentColor" width="16" height="16" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg></div>
+                <p class="text-lg text-white/80 italic leading-relaxed mb-8">"Their conversion-first mindset combined with clean design systems made our dashboard a market leader."</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <img src="https://i.pravatar.cc/150?u=marcus" alt="Marcus" class="w-12 h-12 rounded-full ring-2 ring-primary/20" referrerpolicy="no-referrer">
+                <div><p class="font-bold text-white">Marcus Thorne</p><p class="text-xs text-white/40 uppercase tracking-widest">Founder, Alpha Finance</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-20 flex flex-wrap justify-center gap-8 md:gap-20 opacity-20 filter grayscale invert">
+            <span class="text-2xl font-display font-black tracking-widest">TECHCRUNCH</span><span class="text-2xl font-display font-black tracking-widest">FORBES</span><span class="text-2xl font-display font-black tracking-widest">BLOOMBERG</span><span class="text-2xl font-display font-black tracking-widest">VERGE</span><span class="text-2xl font-display font-black tracking-widest">WIRED</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="py-24 relative overflow-hidden">
+        <div class="container-custom relative z-10 reveal">
+          <div class="glass-card relative overflow-hidden !p-20 text-center border-primary/20">
+            <div class="absolute inset-0 bg-primary/5 -z-10"></div>
+            <div class="max-w-3xl mx-auto space-y-8">
+              <h2 class="text-4xl md:text-6xl font-bold leading-tight">Ready to Scale Your <span class="text-primary italic underline decoration-white/10 underline-offset-[12px]">Digital Presence?</span></h2>
+              <p class="text-xl text-white/60 leading-relaxed max-w-2xl mx-auto">Let’s build something that drives real results. Our strategy-first approach ensures every dollar you spend is an investment in growth.</p>
+              <div class="pt-6 flex justify-center">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="btn-primary group flex items-center gap-4 text-xl px-12 py-5 shadow-[0_0_40px_rgba(10,102,255,0.3)] hover:shadow-[0_0_60px_rgba(10,102,255,0.5)]">Start Your Project<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-2 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+              </div>
+              <p class="text-sm text-white/30 uppercase tracking-[0.4em] pt-8">Limited availability for Q3 project launches</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="py-24 bg-bg-dark/50">
+        <div class="container-custom">
+          <div class="grid lg:grid-cols-2 gap-20 items-start">
+            <div class="space-y-10 reveal">
+              <div>
+                <h2 class="text-sm font-bold text-primary uppercase tracking-[0.3em] mb-4">Connect With Us</h2>
+                <h3 class="text-4xl md:text-5xl font-bold mb-6 italic leading-tight">Let’s engineer your <span class="text-primary not-italic underline underline-offset-4 decoration-white/5">next breakthrough.</span></h3>
+                <p class="text-white/60 text-lg leading-relaxed">Have a project in mind? We'd love to hear from you. Our experts are ready to audit your current presence and suggest immediate growth opportunities.</p>
+              </div>
+              <div class="space-y-6">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=Inquiry%20from%20Axiom%20Website" target="_blank" rel="noopener noreferrer" class="flex items-center gap-6 group">
+                  <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+                  <div><p class="text-xs text-white/40 uppercase tracking-widest font-bold">Inquiries & Support</p><p class="text-lg font-medium">hello.axiomdigital@gmail.com</p></div>
+                </a>
+              </div>
+              <div class="pt-8 flex items-center gap-6">
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/share/1N7nPMiwsS/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/axiom_digitals?igsh=a3AydzM1eDRla2pj" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <!-- X -->
+                <a href="https://x.com/Axiommi3" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                <!-- YOUTUBE -->
+                <a href="https://www.youtube.com/@AxiomDigital-y4n" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors text-white/60 hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+              </div>
+            </div>
+
+            <div class="reveal glass-card !p-10 relative overflow-hidden border-white/5" style="transition-delay: 200ms;">
+               <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+                <form id="contact-form" class="space-y-6 relative z-10">
+                  <div class="space-y-2"><label class="text-xs font-bold uppercase tracking-widest text-white/60 ml-1">Full Name</label><input type="text" name="name" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors"></div>
+                  <div class="space-y-2"><label class="text-xs font-bold uppercase tracking-widest text-white/60 ml-1">Email Address</label><input type="email" name="email" required placeholder="john@company.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors"></div>
+                  <div class="space-y-2"><label class="text-xs font-bold uppercase tracking-widest text-white/60 ml-1">Your Message</label><textarea name="message" rows="5" required placeholder="Tell us about your project goals..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-primary/50 transition-colors resize-none"></textarea></div>
+                  <a href="mailto:hello.axiomdigital@gmail.com" id="send-message-link" target="_blank" rel="noopener noreferrer" class="btn-primary w-full flex items-center justify-center gap-3 py-5 text-lg group">Send Message<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></a>
                 </form>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 bg-surface-lighter">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <span class="font-bold text-xl">AXIOM <span class="text-primary">DIGITALS</span></span>
-            <div class="flex gap-6">
-                <a href="#"><i data-lucide="facebook"></i></a>
-                <a href="#"><i data-lucide="instagram"></i></a>
-                <a href="#"><i data-lucide="twitter"></i></a>
-                <a href="#"><i data-lucide="youtube"></i></a>
+    <!-- FOOTER -->
+    <footer class="bg-bg-dark border-t border-white/5 pt-20 pb-10 overflow-hidden relative">
+      <div class="container-custom">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 reveal">
+          <div class="col-span-2">
+            <div class="flex items-center gap-4 h-12 mb-8">
+              <div class="relative w-14 h-14 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full relative z-10 filter drop-shadow-[0_0_15px_rgba(10,102,255,0.6)]">
+                  <ellipse cx="50" cy="85" rx="40" ry="2" fill="url(#axiom-primary-grad)" class="opacity-40" />
+                  <path d="M50 15 L85 85 L65 85 L50 45 L35 85 L15 85 Z" fill="white" fill-opacity="0.1" />
+                  <path d="M30 65 Q 50 20 85 45" fill="none" stroke="url(#axiom-primary-grad)" stroke-width="6" stroke-linecap="round" class="opacity-60" />
+                  <path d="M50 15 L85 85 L72 85 L50 40 L28 85 L15 85 Z" fill="white" />
+                  <path d="M20 55 Q 50 90 95 35" fill="none" stroke="url(#axiom-primary-grad)" stroke-width="8" stroke-linecap="round" style="filter: url(#glow)" />
+                </svg>
+              </div>
+              <div class="flex flex-col items-start">
+                <span class="font-display font-black text-3xl tracking-[-0.05em] uppercase text-white leading-none">Axiom</span>
+                <span class="text-[9px] tracking-[0.55em] uppercase text-primary font-bold mt-1.5 opacity-80">Digitals</span>
+              </div>
             </div>
-            <p class="text-white/30 text-sm">© 2026 Axiom Digitals. All Rights Reserved.</p>
+            <p class="text-white/40 text-lg max-w-md leading-relaxed">Engineering digital experiences that convert. We are a results-driven agency helping visionary brands scale through superior design and data-led strategy.</p>
+            <div class="mt-10 flex gap-4">
+              <a href="https://www.facebook.com/share/1N7nPMiwsS/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:border-primary/30 transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+              <a href="https://www.instagram.com/axiom_digitals?igsh=a3AydzM1eDRla2pj" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:border-primary/30 transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="https://x.com/Axiommi3" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:border-primary/30 transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+              <a href="https://www.youtube.com/@AxiomDigital-y4n" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:border-primary/30 transition-all"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-8 underline decoration-primary/30 underline-offset-8">Quick Links</h4>
+            <ul class="space-y-4">
+              <li><a href="#services" class="text-white/40 hover:text-white transition-all">Services</a></li>
+              <li><a href="#about" class="text-white/40 hover:text-white transition-all">About</a></li>
+              <li><a href="#portfolio" class="text-white/40 hover:text-white transition-all">Portfolio</a></li>
+              <li><a href="#testimonials" class="text-white/40 hover:text-white transition-all">Testimonials</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-8 underline decoration-primary/30 underline-offset-8">Legal</h4>
+            <ul class="space-y-4">
+              <li><a href="#" class="text-white/40 hover:text-white transition-all">Privacy Policy</a></li>
+              <li><a href="#" class="text-white/40 hover:text-white transition-all">Terms of Service</a></li>
+              <li><a href="#" class="text-white/40 hover:text-white transition-all">Cookie Policy</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p class="text-white/20 text-xs font-semibold tracking-[0.2em] uppercase">© 2026 Axiom Digitals. All rights reserved.</p>
+          <button id="back-to-top" class="flex items-center gap-3 text-white/30 hover:text-white transition-colors group uppercase text-[10px] font-bold tracking-[0.3em]">
+            Back to Top
+            <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </div>
+          </button>
+        </div>
+      </div>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        lucide.createIcons();
-        
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-surface/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.remove('bg-transparent', 'py-6');
-            } else {
-                nav.classList.remove('bg-surface/80', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/5');
-                nav.classList.add('bg-transparent', 'py-6');
-            }
-        });
-    </script>
-</body>
-</html>
+    <!-- SCRIPTS -->
+    <script type="module">
+      // Sticky Header & Scroll Reveal
+      const header = document.getElementById('header');
+      const reveals = document.querySelectorAll('.reveal');
+      
+      window.addEventListener('scroll', () => {
+        // Sticky Header
+        if (window.scrollY > 50) {
+          header.classList.add('bg-bg-dark/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+          header.classList.remove('py-6');
+          header.classList.add('py-4');
+        } else {
+          header.classList.remove('bg-bg-dark/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+          header.classList.add('py-6');
+          header.classList.remove('py-4');
+        }
 
+        // Scroll Reveal
+        reveals.forEach(reveal => {
+          const windowHeight = window.innerHeight;
+          const revealTop = reveal.getBoundingClientRect().top;
+          const revealPoint = 150;
+          if (revealTop < windowHeight - revealPoint) {
+            reveal.classList.add('active');
+          }
+        });
+      });
+
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById('mobile-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Form Handling - Reactive Link to Gmail
+      const contactForm = document.getElementById('contact-form');
+      const sendMessageLink = document.getElementById('send-message-link');
+      const inputs = contactForm.querySelectorAll('input, textarea');
+
+      function updateGmailLink() {
+        const name = contactForm.querySelector('[name="name"]').value || "Client";
+        const email = contactForm.querySelector('[name="email"]').value || "";
+        const message = contactForm.querySelector('[name="message"]').value || "";
+        
+        const subject = encodeURIComponent(`Project Inquiry from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        
+        // Direct Gmail Compose URL
+        sendMessageLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=hello.axiomdigital@gmail.com&su=${subject}&body=${body}`;
+        sendMessageLink.target = "_blank";
+      }
+
+      inputs.forEach(input => {
+        input.addEventListener('input', updateGmailLink);
+      });
+      
+      // Initialize on load
+      updateGmailLink();
+
+      // Form Success UI Feedback on click
+      sendMessageLink.addEventListener('click', () => {
+        const originalContent = sendMessageLink.innerHTML;
+        setTimeout(() => {
+          sendMessageLink.classList.remove('btn-primary');
+          sendMessageLink.classList.add('btn-success');
+          sendMessageLink.innerHTML = `<span>Opening Gmail...</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        
+          setTimeout(() => {
+            sendMessageLink.classList.remove('btn-success');
+            sendMessageLink.classList.add('btn-primary');
+            sendMessageLink.innerHTML = originalContent;
+            contactForm.reset();
+            updateGmailLink();
+          }, 4000);
+        }, 500);
+      });
+
+      // Back to Top
+      const bttButton = document.getElementById('back-to-top');
+      bttButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  </body>
+</html>
